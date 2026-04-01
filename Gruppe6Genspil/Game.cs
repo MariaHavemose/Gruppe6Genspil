@@ -32,12 +32,13 @@ namespace Gruppe6Genspil
 
         public override string ToString()
         {
-            return $"{Name},{Genre},{MaxPlayers},{MinPlayers},{AgeRating},{Variant}";
+            return $"GAME:{Name},{Genre},{MaxPlayers},{MinPlayers},{AgeRating},{Variant}";
 
         }
 
         public static Game FromString(string data)
         {
+            string stripped = data.Substring(5);
             string[] parts = data.Split(',');
             return new Game(parts[0], parts[1], int.Parse(parts[2]), int.Parse(parts[3]), int.Parse(parts[4]), parts[5]);
         }

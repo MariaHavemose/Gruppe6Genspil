@@ -26,12 +26,13 @@ namespace Gruppe6Genspil
         public override string ToString()
         {
 
-            return $"{Condition},{Price},{Reserved},{ReservedBy}";
+            return $"COPY:{Condition},{Price},{Reserved},{ReservedBy}";
 
         }
 
         public static GameCopy FromString(string data)
         {
+            string stripped = data.Substring(5);
             string[] parts = data.Split(',');
             return new GameCopy(parts[0], double.Parse(parts[1]), Enum.Parse<CopyStatus>(parts[2]))
             {

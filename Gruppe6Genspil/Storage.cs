@@ -28,6 +28,32 @@ namespace Gruppe6Genspil
             }
         }
 
+        public List<Game> LoadGamesFromFile()
+        {
+            List<Game> games = new List<Game>();
+
+            using (StreamReader sr = new StreamReader(FilePath)) 
+            {
+                string line;
+                while ((line = sr.ReadLine()) != null)
+                {
+                    if (line.StartsWith("GAME:"))
+                    {
+                        games.Add(Game.FromString(line));
+                    }
+                    else if (line.StartsWith("COPY:"))
+                    {
+                        if (games.Count > 0)
+                        {
+                            games[games.Count - 1].Copies.Add(GameCopy.FromString(line));
+                        }
+                    }
+                }
+            }
+
+            return games; 
+        }
+
 
     }
 }
