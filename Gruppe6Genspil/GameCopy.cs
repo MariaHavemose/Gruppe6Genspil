@@ -12,5 +12,35 @@ namespace Gruppe6Genspil
 
         public CopyStatus Reserved { get; set; }
 
+        public string ReservedBy { get; set; }
+
+
+        public GameCopy(string condition, double price, CopyStatus status)
+        {
+            Condition = condition;
+            Price = price;
+            Reserved = status;
+            ReservedBy = null;
+        }
+
+        public override string ToString()
+        {
+
+            return $"{Condition},{Price},{Reserved},{ReservedBy}";
+
+        }
+
+        public static GameCopy FromString(string data)
+        {
+            string[] parts = data.Split(',');
+            return new GameCopy(parts[0], double.Parse(parts[1]), Enum.Parse<CopyStatus>(parts[2]))
+            {
+                ReservedBy = parts[3]
+            };
+
+        
+        }
+
+
     }
 }
