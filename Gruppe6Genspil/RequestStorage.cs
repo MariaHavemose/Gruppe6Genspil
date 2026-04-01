@@ -8,10 +8,9 @@ namespace Gruppe6Genspil
     {
         public string FilePath { get; set; }
 
-        public RequestStorage(string filePath)
-        {
-            FilePath = filePath;
-        }
+        public List<Request> Requests { get; set; } = new List<Request>();
+
+        
 
         public void SaveRequestToFile(List<Request> requests)
         {
@@ -39,6 +38,27 @@ namespace Gruppe6Genspil
 
             return requests;
         }
+
+        public RequestStorage(string filePath)
+        {
+            FilePath = filePath;
+            Requests = LoadRequestFromFile();
+        }
+
+        public void AddRequest(Request request)
+        {
+            Requests.Add(request);
+            SaveRequestToFile(Requests);
+        }
+
+        public void ShowRequests()
+        {
+            foreach (var request in Requests)
+            {
+                Console.WriteLine(request.ToString());
+            }
+        }
+
     }
 
 
