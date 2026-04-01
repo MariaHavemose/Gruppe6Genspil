@@ -1,0 +1,60 @@
+﻿GAME:Sequence,Kortspil,12,2,7,Original
+COPY:God stand,0,Available,
+COPY:Til reparation,0,ForRepair,
+COPY:Til reparation,0,ForRepair,
+GAME:Sequence,Kortspil,12,2,7,Junior
+COPY:Lidt skrammet,0,Available,
+GAME:Sequence,Kortspil,12,2,7,Giant
+GAME:Ticket to Ride,Strategi,5,2,8,Berlin
+COPY:God stand,0,Available,
+COPY:God stand,0,Available,
+COPY:God stand,0,Available,
+COPY:Lidt slidt,0,Available,
+COPY:Til reparation,0,ForRepair,
+GAME:Ticket to Ride,Strategi,5,2,8,Europe - engelsk
+GAME:Ticket to Ride,Strategi,5,2,8,Europe - dansk
+COPY:God stand,0,Available,
+COPY:God stand,0,Available,
+GAME:Ticket to Ride,Strategi,5,2,8,First Journey
+COPY:God stand,0,Waitlist,Mejse Johansen
+GAME:Ticket to Ride,Strategi,5,2,8,Europa 1912
+GAME:Ticket to Ride,Strategi,5,2,8,Ghost Train
+GAME:Ticket to Ride,Strategi,5,2,8,New York
+GAME:Ticket to Ride,Strategi,5,2,8,Japan & Italy
+COPY:Ok stand,0,Available,
+GAME:Ticket to Ride,Strategi,5,2,8,Northern Lights
+GAME:7 Wonders,Strategi,7,2,10,Dansk 2nd edition
+COPY:God stand,0,Reserved,Torstein
+GAME:7 Wonders,Strategi,7,2,10,Architects - dansk
+COPY:Ok stand,0,Available,
+COPY:Ok stand,0,Available,
+COPY:Ikke åbnet,0,Available,
+GAME:7 Wonders,Strategi,7,2,10,Architects - Medals
+COPY:Skadet på hjørne ellers fin stand,0,Available,
+GAME:7 Wonders,Strategi,7,2,10,2nd edition Cities - engelsk
+COPY:Til reparation,0,ForRepair,
+GAME:7 Wonders Duel,Strategi,2,2,10,Agora - dansk
+COPY:Ok stand,0,Available,
+COPY:Ok stand,0,Available,
+COPY:Helt ny,0,Available,
+GAME:7 Wonders Duel,Strategi,2,2,10,Agora - engelsk
+COPY:Kan måske reddes,0,ForRepair,
+GAME:7 Wonders,Strategi,7,2,10,Alverdens
+COPY:God stand,0,Waitlist,Cille fra skobutikken
+GAME:7 Wonders,Strategi,7,2,10,Helte
+COPY:Til reparation,0,ForRepair,
+GAME:7 Wonders,Strategi,7,2,10,OMG
+COPY:Helt ny,0,Available,
+GAME:7 Wonders,Strategi,7,2,10,Popkultur
+COPY:God stand,0,Available,
+COPY:Lettere ridset,0,Available,
+COPY:Lettere ridset,0,Available,
+GAME:7 Wonders,Strategi,7,2,10,Arkitektur
+COPY:God stand,0,Available,
+COPY:God stand,0,Available,
+GAME:7 Wonders,Strategi,7,2,10,Helte
+COPY:God stand,0,Available,
+GAME:A la carte,Familiespil,6,2,8,Dessert
+COPY:God stand,0,Available,
+GAME:Bad People,Kortspil,10,3,18,Original
+COPY:God stand,0,Waitlist,Allan fra min opgang
