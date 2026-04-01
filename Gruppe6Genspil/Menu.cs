@@ -8,11 +8,13 @@ public class Menu
 {
     // Reference til Storage (lager-logikken)
     private Storage _storage;
+    private RequestStorage _requestStorage;
 
     // Konstruktør: menuen skal bruge Storage
-    public Menu(Storage storage)
+    public Menu(Storage storage, RequestStorage requestStorage)
     {
         _storage = storage;
+        _requestStorage = requestStorage;
     }
 
     // Hovedmenuen som kører i en løkke
