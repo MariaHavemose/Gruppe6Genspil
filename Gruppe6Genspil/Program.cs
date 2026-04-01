@@ -4,7 +4,10 @@
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+            Storage storage = new Storage("GameDatabase.txt");
+            RequestStorage requestStorage = new RequestStorage("RequestDatabase.txt");
+            Menu menu = new Menu(storage, requestStorage);
+            menu.Start();
         }
     }
 }

@@ -33,7 +33,13 @@ namespace Gruppe6Genspil
         
         public override string ToString()
         {
-            return $"Kunde: {CustomerName}, Spil: {GameName}, Kommentar: {Comment}";
+            return $"{CustomerName},{GameName},{Comment}";
+        }
+
+        public static Request FromString(string data)
+        {
+            string[] parts = data.Split(',');
+            return new Request(parts[0], parts[1], parts[2]);
         }
     }
 }
