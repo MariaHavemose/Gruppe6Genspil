@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Gruppe6Genspil
 {
-    internal class RequestStorage
+    public class RequestStorage
     {
         public string FilePath { get; set; }
 
@@ -26,6 +26,9 @@ namespace Gruppe6Genspil
         public List<Request> LoadRequestFromFile()
         {
             List<Request> requests = new List<Request>();
+
+            if (!File.Exists(FilePath))
+                return requests;
 
             using (StreamReader sr = new StreamReader(FilePath))
             {

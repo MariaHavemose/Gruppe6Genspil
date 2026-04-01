@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Gruppe6Genspil
 {
-    internal class GameCopy
+    public class GameCopy
     {
 
         public string Condition { get; set; }

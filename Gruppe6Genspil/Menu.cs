@@ -58,7 +58,7 @@ public class Menu
                     break;
 
                 case "5":
-                    _storage.ShowRequests();
+                    _requestStorage.ShowRequests();
                     break;
 
                 case "6":
@@ -133,18 +133,22 @@ public class Menu
         Console.Write("Genre: ");
         string genre = Console.ReadLine();
 
-        Console.Write("Antal spillere: ");
-        int players = int.Parse(Console.ReadLine());
 
-        Console.Write("Stand: ");
-        string condition = Console.ReadLine();
+        Console.Write("Maks spillere: ");
+        int maxplayers = int.Parse(Console.ReadLine());
 
-        Console.Write("Pris: ");
-        double price = double.Parse(Console.ReadLine());
+        Console.Write("Min spillere: ");
+        int minplayers = int.Parse(Console.ReadLine());
 
-        Game game = new Game(name, genre, players, condition, price);
+        Console.Write("Aldersgrænse: ");
+        int ageRating = int.Parse(Console.ReadLine());
 
-        _storage.ADDGame(game);
+        Console.Write("Variant: ");
+        string variant = Console.ReadLine();
+
+        Game game = new Game(name, genre, maxplayers, minplayers, ageRating, variant);
+
+        _storage.AddGame(game);
     }
 
     // Menu punkt: Tilføj en kundeforespørgsel
@@ -161,6 +165,6 @@ public class Menu
 
         Request req = new Request(customer, game, comment);
 
-        _storage.ADDRequest(req);
+        _requestStorage.AddRequest(req);
     }
 }

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Gruppe6Genspil
 {
-    internal class SearchCriteria
+    public class SearchCriteria
     {
         public string Name { get; set; }
         public string Genre { get; set; }

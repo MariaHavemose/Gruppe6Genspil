@@ -6,7 +6,7 @@ namespace Gruppe6Genspil
 {
   
 
-        enum CopyStatus
+        public enum CopyStatus
         {
             Available,
             Reserved,

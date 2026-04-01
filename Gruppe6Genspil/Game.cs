@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Gruppe6Genspil
 {
-    internal class Game
+    public class Game
     {
 
         public string Name { get; set; }

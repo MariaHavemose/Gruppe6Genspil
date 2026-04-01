@@ -1,11 +1,13 @@
-﻿using System;
+﻿using Microsoft.VisualBasic;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Reflection.Metadata.Ecma335;
 using System.Text;
 
 namespace Gruppe6Genspil
 {
-    internal class Storage
+    public class Storage
     {
         public string FilePath { get; set; }
         public List<Game> Games { get; set; } = new List<Game>();
@@ -71,6 +73,22 @@ namespace Gruppe6Genspil
             SaveGamesToFile(Games);
         }
 
+        public List<Game> SearchGame(SearchCriteria criteria)
+        {
+            List<Game> results = new List<Game>();
+
+            foreach (var game in Games)
+            {
+                if (
+     (string.IsNullOrEmpty(criteria.Name) || game.Name.Contains(criteria.Name, StringComparison.OrdinalIgnoreCase)) &&
+     (string.IsNullOrEmpty(criteria.Genre) || game.Genre.Contains(criteria.Genre, StringComparison.OrdinalIgnoreCase)))
+                {
+                    results.Add(game);
+                }
+            }
+
+            return results;
+        }
 
 
     }
