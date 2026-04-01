@@ -16,27 +16,30 @@ namespace Gruppe6Genspil
 
         public int AgeRating { get; set; }
 
+        public string Variant { get; set; }
+
         public List<GameCopy> Copies { get; set; } = new List<GameCopy>();
 
-        public Game(string name, string genre, int maxPlayers, int minPlayers, int ageRating)
+        public Game(string name, string genre, int maxPlayers, int minPlayers, int ageRating, string variant)
         {
             Name = name;
             Genre = genre;
             MaxPlayers = maxPlayers;
             MinPlayers = minPlayers;
             AgeRating = ageRating;
+            Variant = variant;
         }
 
         public override string ToString()
         {
-            return $"{Name},{Genre},{MaxPlayers},{MinPlayers},{AgeRating}";
+            return $"{Name},{Genre},{MaxPlayers},{MinPlayers},{AgeRating},{Variant}";
 
         }
 
         public static Game FromString(string data)
         {
             string[] parts = data.Split(',');
-            return new Game(parts[0], parts[1], int.Parse(parts[2]), int.Parse(parts[3]), int.Parse(parts[4]));
+            return new Game(parts[0], parts[1], int.Parse(parts[2]), int.Parse(parts[3]), int.Parse(parts[4]), parts[5]);
         }
     }
 
