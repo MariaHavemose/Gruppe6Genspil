@@ -37,12 +37,13 @@ public class Menu
             Console.Write("Vælg menu punkt: ");
 
             string choice = Console.ReadLine();
+            Console.Clear();
 
             // Behandler brugerens valg
             switch (choice)
             {
                 case "1":
-                    _storage.HentAlleSpil();
+                    _storage.WriteAllGames();
                     break;
 
                 case "2":
