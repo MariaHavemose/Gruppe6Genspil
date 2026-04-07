@@ -8,6 +8,7 @@ namespace Gruppe6Genspil
     {
 
         public string Name { get; set; }
+
         public string Genre { get; set; }
 
         public int MaxPlayers { get; set; }
