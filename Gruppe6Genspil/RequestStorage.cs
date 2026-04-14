@@ -7,11 +7,7 @@ namespace Gruppe6Genspil
     public class RequestStorage
     {
         public string FilePath { get; set; }
-
         public List<Request> Requests { get; set; } = new List<Request>();
-
-        
-
         public void SaveRequestToFile(List<Request> requests)
         {
             using (StreamWriter sw = new StreamWriter(FilePath))
@@ -26,10 +22,8 @@ namespace Gruppe6Genspil
         public List<Request> LoadRequestFromFile()
         {
             List<Request> requests = new List<Request>();
-
             if (!File.Exists(FilePath))
                 return requests;
-
             using (StreamReader sr = new StreamReader(FilePath))
             {
                 string line;
@@ -38,7 +32,6 @@ namespace Gruppe6Genspil
                     requests.Add(Request.FromString(line));
                 }
             }
-
             return requests;
         }
 
@@ -65,7 +58,6 @@ namespace Gruppe6Genspil
                 if (request.GameName.Length > longestGameName)
                     longestGameName = request.GameName.ToString().Length;
             }
-
             Console.WriteLine("Kundens navn:".PadRight(longestCustomerName) + " | " + "Kundens ønske:".PadRight(longestGameName) + " | " + "Kundens kommentar: ");
             Console.WriteLine("---------------------------------------------------");
             foreach (var request in Requests)
@@ -73,15 +65,10 @@ namespace Gruppe6Genspil
                 string requestCustomerName = request.CustomerName.PadRight(longestCustomerName);
                 string requestGameName = request.GameName.PadRight(longestGameName);
                 string requestCustomerComment = request.Comment;
-                
                 Console.WriteLine(requestCustomerName.PadRight(longestCustomerName) + " | " + requestGameName.PadRight(longestGameName) + " | " + requestCustomerComment);
             }
         }
-
     }
-
-
-
 }
 
 

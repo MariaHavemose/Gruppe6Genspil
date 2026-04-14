@@ -11,7 +11,6 @@ namespace Gruppe6Genspil
     {
         public string FilePath { get; set; }
         public List<Game> Games { get; set; } = new List<Game>();
-
         public Storage(string filePath)
         {
             FilePath = filePath;
@@ -36,7 +35,6 @@ namespace Gruppe6Genspil
         public List<Game> LoadGamesFromFile()
         {
             List<Game> games = new List<Game>();
-
             using (StreamReader sr = new StreamReader(FilePath)) 
             {
                 string line;
@@ -97,7 +95,6 @@ namespace Gruppe6Genspil
                 Console.WriteLine(gameNameCell + " | " + gameGenreCell + " | " + gameVariantCell + " | " + gameAgeRatingCell + " | " + gameMaxPlayersCell + " | " + gameMinPlayersCell + " | " + gameCopyAmount);
             }
         }
-
         public void AddGame(Game game)
         {
             Games.Add(game);
@@ -107,17 +104,15 @@ namespace Gruppe6Genspil
         public List<Game> SearchGame(SearchCriteria criteria)
         {
             List<Game> results = new List<Game>();
-
             foreach (var game in Games)
             {
                 if (
-     (string.IsNullOrEmpty(criteria.Name) || game.Name.Contains(criteria.Name, StringComparison.OrdinalIgnoreCase)) &&
-     (string.IsNullOrEmpty(criteria.Genre) || game.Genre.Contains(criteria.Genre, StringComparison.OrdinalIgnoreCase)))
+                (string.IsNullOrEmpty(criteria.Name) || game.Name.Contains(criteria.Name, StringComparison.OrdinalIgnoreCase)) &&
+                (string.IsNullOrEmpty(criteria.Genre) || game.Genre.Contains(criteria.Genre, StringComparison.OrdinalIgnoreCase)))
                 {
                     results.Add(game);
                 }
             }
-
             return results;
         }
     }

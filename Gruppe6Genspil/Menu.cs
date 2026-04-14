@@ -70,7 +70,6 @@ public class Menu
                     Console.WriteLine("Ugyldigt valg!");
                     break;
             }
-
             Console.WriteLine("\nTryk en tast for at fortsætte...");
             Console.ReadKey();
         }
@@ -147,7 +146,6 @@ public class Menu
         string variant = Console.ReadLine();
 
         Game game = new Game(name, genre, maxplayers, minplayers, ageRating, variant);
-
         _storage.AddGame(game);
     }
 
@@ -156,15 +154,11 @@ public class Menu
     {
         Console.Write("Kundens navn: ");
         string customer = Console.ReadLine();
-
         Console.Write("Ønsket spil: ");
         string game = Console.ReadLine();
-
         Console.Write("Kommentar: ");
         string comment = Console.ReadLine();
-
         Request req = new Request(customer, game, comment);
-
         _requestStorage.AddRequest(req);
     }
 }
