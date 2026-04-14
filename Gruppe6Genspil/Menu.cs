@@ -31,9 +31,10 @@ public class Menu
             Console.WriteLine("1. Vis lager");
             Console.WriteLine("2. Søg efter spil");
             Console.WriteLine("3. Tilføj spil");
-            Console.WriteLine("4. Registrer forespørgsel");
-            Console.WriteLine("5. Vis forespørgsler");
-            Console.WriteLine("6. Afslut program");
+            Console.WriteLine("4. Slet spil");
+            Console.WriteLine("5. Registrer forespørgsel");
+            Console.WriteLine("6. Vis forespørgsler");
+            Console.WriteLine("7. Afslut program");
             Console.Write("Vælg menu punkt: ");
 
             string choice = Console.ReadLine();
@@ -55,14 +56,18 @@ public class Menu
                     break;
 
                 case "4":
-                    AddRequestMenu();
+                    RemoveGameCopyMenu();
                     break;
 
                 case "5":
-                    _requestStorage.ShowRequests();
+                    AddRequestMenu();
                     break;
 
                 case "6":
+                    _requestStorage.ShowRequests();
+                    break;
+
+                case "7":
                     running = false;
                     break;
 
@@ -149,7 +154,44 @@ public class Menu
         Game game = new Game(name, genre, maxplayers, minplayers, ageRating, variant);
 
         _storage.AddGame(game);
+
+        Console.Write("Vil du tilføje en kopi af dette spil? (y/n): ");
+        char addCopy = Console.ReadKey().KeyChar;
+
+        if (char.ToLower(addCopy) == 'y')
+        {
+            Console.WriteLine("\nTilføjer kopi...");
+            Console.Write("Stand: ");
+            string condition = Console.ReadLine();
+            double price = GameCopy.GetPriceFromCondition(condition);
+            Console.Write("Status (Available/Reserved): ");
+            CopyStatus status = Enum.Parse<CopyStatus>(Console.ReadLine());
+            int idNumber = _storage.GetNextId();
+            GameCopy copy = new GameCopy(condition, price, status, idNumber);
+            game.Copies.Add(copy);
+            _storage.SaveGamesToFile(_storage.Games);
+
+        }
+
+        else
+        {
+            Console.WriteLine("\nSpil tilføjet uden kopi.");
+        }
     }
+
+    private void RemoveGameCopyMenu()
+    {
+        Console.Write("Id nummer: ");
+        int idNumber = int.Parse(Console.ReadLine());
+
+        GameCopy copy = _storage.FindCopyById(idNumber);
+
+        if (copy != null)
+        {
+            _storage.DeleteCopy(copy);
+        }
+    }
+
 
     // Menu punkt: Tilføj en kundeforespørgsel
     private void AddRequestMenu()

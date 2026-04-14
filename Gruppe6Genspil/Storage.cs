@@ -37,7 +37,7 @@ namespace Gruppe6Genspil
         {
             List<Game> games = new List<Game>();
 
-            using (StreamReader sr = new StreamReader(FilePath)) 
+            using (StreamReader sr = new StreamReader(FilePath))
             {
                 string line;
                 while ((line = sr.ReadLine()) != null)
@@ -56,8 +56,39 @@ namespace Gruppe6Genspil
                 }
             }
 
-            return games; 
+            return games;
         }
+
+        public void GiveIdToCopies()
+        {
+            foreach (var game in Games)
+            {
+                foreach (var copy in game.Copies)
+                {
+                    if (copy.IdNumber == 0)
+                    {
+                        copy.IdNumber = GetNextId();
+                    }
+                }
+            }
+            SaveGamesToFile(Games);
+        }
+
+        public void GivePriceToCopies()
+        {
+            foreach (var game in Games)
+            {
+                foreach (var copy in game.Copies)
+                {
+                    if (copy.Price == 0)
+                    {
+                        copy.Price = GameCopy.GetPriceFromCondition(copy.Condition);
+                    }
+                }
+            }
+            SaveGamesToFile(Games);
+        }
+
 
         // Spillager:
         public void WriteAllGames()
@@ -82,7 +113,11 @@ namespace Gruppe6Genspil
                     longestGameMaxPlayers = game.MaxPlayers.ToString().Length;
                 if (game.MinPlayers.ToString().Length > longestGameMinPlayers)
                     longestGameMinPlayers = game.MinPlayers.ToString().Length;
+
+                
             }
+
+           
 
             Console.WriteLine("=== Spillager ===\n");
             foreach (var game in Games)
@@ -95,6 +130,11 @@ namespace Gruppe6Genspil
                 string gameMinPlayersCell = "Minimum spillere: " + game.MinPlayers.ToString().PadRight(longestGameMinPlayers);
                 string gameCopyAmount = "Antal kopier: " + game.Copies.Count;
                 Console.WriteLine(gameNameCell + " | " + gameGenreCell + " | " + gameVariantCell + " | " + gameAgeRatingCell + " | " + gameMaxPlayersCell + " | " + gameMinPlayersCell + " | " + gameCopyAmount);
+
+                foreach (var copy in game.Copies)
+                {
+                    Console.WriteLine($"  - ID: {copy.IdNumber} | Stand: {copy.Condition} | Pris: {copy.Price} | Status: {copy.Reserved}");
+                }
             }
         }
 
@@ -120,5 +160,54 @@ namespace Gruppe6Genspil
 
             return results;
         }
+
+        public void DeleteCopy(GameCopy copy)
+        {
+            foreach (var game in Games)
+            {
+                if (game.Copies.Contains(copy))
+                {
+                    game.Copies.Remove(copy);
+                    SaveGamesToFile(Games);
+                    return;
+                }
+
+
+            }
+
+            Console.WriteLine("Kopien blev ikke fundet i nogen spil.");
+
+
+
+        }
+
+        public GameCopy FindCopyById(int id)
+        {
+            foreach (var game in Games)
+            {
+                foreach (var copy in game.Copies)
+                {
+                    if (copy.IdNumber == id)
+                    {
+                        return copy;
+                    }
+                }
+            }
+            Console.WriteLine($"Kopien med ID {id} blev ikke fundet i nogen spil.");
+
+            return null;
+        }
+
+        public int GetNextId()
+        {
+            int max = 0;
+            foreach (var game in Games)
+                foreach (var copy in game.Copies)
+                    if (copy.IdNumber > max)
+                        max = copy.IdNumber;
+            return max + 1;
+        }
+
     }
+
 }
