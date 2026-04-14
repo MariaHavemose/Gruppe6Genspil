@@ -56,9 +56,25 @@ namespace Gruppe6Genspil
 
         public void ShowRequests()
         {
+            int longestCustomerName = 13;
+            int longestGameName = 14;
             foreach (var request in Requests)
             {
-                Console.WriteLine(request.ToString());
+                if (request.CustomerName.Length > longestCustomerName)
+                    longestCustomerName = request.CustomerName.Length;
+                if (request.GameName.Length > longestGameName)
+                    longestGameName = request.GameName.ToString().Length;
+            }
+
+            Console.WriteLine("Kundens navn:".PadRight(longestCustomerName) + " | " + "Kundens ønske:".PadRight(longestGameName) + " | " + "Kundens kommentar: ");
+            Console.WriteLine("---------------------------------------------------");
+            foreach (var request in Requests)
+            {
+                string requestCustomerName = request.CustomerName.PadRight(longestCustomerName);
+                string requestGameName = request.GameName.PadRight(longestGameName);
+                string requestCustomerComment = request.Comment;
+                
+                Console.WriteLine(requestCustomerName.PadRight(longestCustomerName) + " | " + requestGameName.PadRight(longestGameName) + " | " + requestCustomerComment);
             }
         }
 

@@ -134,7 +134,6 @@ public class Menu
         Console.Write("Genre: ");
         string genre = Console.ReadLine();
 
-
         Console.Write("Maks spillere: ");
         int maxplayers = int.Parse(Console.ReadLine());
 

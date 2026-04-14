@@ -59,6 +59,7 @@ namespace Gruppe6Genspil
             return games; 
         }
 
+        // Spillager:
         public void WriteAllGames()
         {
             int longestGameName = 0;
