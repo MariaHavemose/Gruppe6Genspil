@@ -16,7 +16,6 @@ namespace Gruppe6Genspil
             FilePath = filePath;
             Games = LoadGamesFromFile();
         }
-
         public void SaveGamesToFile(List<Game> games)
         {
             using (StreamWriter sw = new StreamWriter(FilePath))
@@ -31,7 +30,6 @@ namespace Gruppe6Genspil
                 }
             }
         }
-
         public List<Game> LoadGamesFromFile()
         {
             List<Game> games = new List<Game>();
@@ -53,11 +51,8 @@ namespace Gruppe6Genspil
                     }
                 }
             }
-
             return games; 
         }
-
-        // Spillager:
         public void WriteAllGames()
         {
             int longestGameName = 0;
@@ -81,7 +76,6 @@ namespace Gruppe6Genspil
                 if (game.MinPlayers.ToString().Length > longestGameMinPlayers)
                     longestGameMinPlayers = game.MinPlayers.ToString().Length;
             }
-
             Console.WriteLine("=== Spillager ===\n");
             foreach (var game in Games)
             {
@@ -100,7 +94,6 @@ namespace Gruppe6Genspil
             Games.Add(game);
             SaveGamesToFile(Games);
         }
-
         public List<Game> SearchGame(SearchCriteria criteria)
         {
             List<Game> results = new List<Game>();
