@@ -11,9 +11,11 @@ namespace Gruppe6Genspil
     {
         public string FilePath { get; set; }
         public List<Game> Games { get; set; } = new List<Game>();
-        public Storage(string filePath)
+        private IdManager _idManager;
+        public Storage(string filePath, IdManager idManager)
         {
             FilePath = filePath;
+            _idManager = idManager;
             Games = LoadGamesFromFile();
         }
         public void SaveGamesToFile(List<Game> games)
@@ -40,13 +42,16 @@ namespace Gruppe6Genspil
                 {
                     if (line.StartsWith("GAME:"))
                     {
-                        games.Add(Game.FromString(line));
+                        int id = _idManager.GetNextId();
+                        string trimmedLine = line.Replace("GAME:", "");
+                        games.Add(Game.FromString(id, trimmedLine));
                     }
                     else if (line.StartsWith("COPY:"))
                     {
                         if (games.Count > 0)
                         {
-                            games[games.Count - 1].Copies.Add(GameCopy.FromString(line));
+                            string trimmedLine = line.Replace("COPY:", "");
+                            games[games.Count - 1].Copies.Add(GameCopy.FromString(trimmedLine));
                         }
                     }
                 }
@@ -55,6 +60,7 @@ namespace Gruppe6Genspil
         }
         public void WriteAllGames()
         {
+            int longestGameId = 0;
             int longestGameName = 0;
             int longestGameGenre = 0;
             int longestGameVariant = 0;
@@ -63,6 +69,8 @@ namespace Gruppe6Genspil
             int longestGameMinPlayers = 0;
             foreach (var game in Games)
             {
+                if (game.Id.ToString().Length > longestGameId)
+                    longestGameId = game.Id.ToString().Length;
                 if (game.Name.Length > longestGameName)
                     longestGameName = game.Name.Length;
                 if (game.Genre.Length > longestGameGenre)
@@ -79,6 +87,7 @@ namespace Gruppe6Genspil
             Console.WriteLine("=== Spillager ===\n");
             foreach (var game in Games)
             {
+                string gameIdCell = "ID: " + game.Id.ToString().PadRight(longestGameId);
                 string gameNameCell = "Navn: " + game.Name.PadRight(longestGameName);
                 string gameGenreCell = "Genre: " + game.Genre.PadRight(longestGameGenre);
                 string gameVariantCell = "Variant: " + game.Variant.PadRight(longestGameVariant);
@@ -86,7 +95,14 @@ namespace Gruppe6Genspil
                 string gameMaxPlayersCell = "Maksimum spillere: " + game.MaxPlayers.ToString().PadRight(longestGameMaxPlayers);
                 string gameMinPlayersCell = "Minimum spillere: " + game.MinPlayers.ToString().PadRight(longestGameMinPlayers);
                 string gameCopyAmount = "Antal kopier: " + game.Copies.Count;
-                Console.WriteLine(gameNameCell + " | " + gameGenreCell + " | " + gameVariantCell + " | " + gameAgeRatingCell + " | " + gameMaxPlayersCell + " | " + gameMinPlayersCell + " | " + gameCopyAmount);
+                Console.WriteLine(gameIdCell 
+                    + " | " + gameNameCell 
+                    + " | " + gameGenreCell 
+                    + " | " + gameVariantCell 
+                    + " | " + gameAgeRatingCell 
+                    + " | " + gameMaxPlayersCell 
+                    + " | " + gameMinPlayersCell 
+                    + " | " + gameCopyAmount);
             }
         }
         public void AddGame(Game game)
@@ -94,6 +110,14 @@ namespace Gruppe6Genspil
             Games.Add(game);
             SaveGamesToFile(Games);
         }
+
+        // Sanna delete game test
+        public void DeleteGame(int id)
+        {
+            Games.RemoveAll(x => x.Id == id);
+            SaveGamesToFile(Games);
+        }
+
         public List<Game> SearchGame(SearchCriteria criteria)
         {
             List<Game> results = new List<Game>();

@@ -7,10 +7,12 @@ public class Menu
 {
     private Storage _storage;
     private RequestStorage _requestStorage;
-    public Menu(Storage storage, RequestStorage requestStorage)
+    private IdManager _idManager;
+    public Menu(Storage storage, RequestStorage requestStorage, IdManager idManager)
     {
         _storage = storage;
         _requestStorage = requestStorage;
+        _idManager = idManager;
     }
     public void Start()
     {
@@ -19,12 +21,14 @@ public class Menu
         {
             Console.Clear();
             Console.WriteLine("=== Lagerstyringssystem ===");
-            Console.WriteLine("1. Vis lager");
+            Console.WriteLine("1. Vis spillager");
             Console.WriteLine("2. Søg efter spil");
             Console.WriteLine("3. Tilføj spil");
-            Console.WriteLine("4. Registrer forespørgsel");
-            Console.WriteLine("5. Vis forespørgsler");
-            Console.WriteLine("6. Afslut program");
+            Console.WriteLine("4. Slet spil");
+            Console.WriteLine("5. Registrer forespørgsel");
+            Console.WriteLine("6. Vis forespørgsler");
+            Console.WriteLine("7. Slet forespørgsel");
+            Console.WriteLine("8. Afslut program");
             Console.Write("Vælg menu punkt: ");
             string choice = Console.ReadLine();
             Console.Clear();
@@ -40,12 +44,18 @@ public class Menu
                     AddGameMenu();
                     break;
                 case "4":
-                    AddRequestMenu();
+                    DeleteGameMenu();
                     break;
                 case "5":
-                    _requestStorage.ShowRequests();
+                    AddRequestMenu();
                     break;
                 case "6":
+                    _requestStorage.ShowRequests();
+                    break;
+                case "7":
+                    DeleteRequestMenu();
+                    break;
+                case "8":
                     running = false;
                     break;
                 default:
@@ -94,6 +104,8 @@ public class Menu
     }
     private void AddGameMenu()
     {
+        int id = _idManager.GetNextId();
+        Console.WriteLine("=== Tilføj spil ===\n");
         Console.Write("Spil navn: ");
         string name = Console.ReadLine();
         Console.Write("Genre: ");
@@ -106,11 +118,21 @@ public class Menu
         int ageRating = int.Parse(Console.ReadLine());
         Console.Write("Variant: ");
         string variant = Console.ReadLine();
-        Game game = new Game(name, genre, maxplayers, minplayers, ageRating, variant);
+        Game game = new Game(id, name, genre, maxplayers, minplayers, ageRating, variant);
         _storage.AddGame(game);
+    }
+    private void DeleteGameMenu()
+    {
+        Console.WriteLine("=== Slet spil ===");
+        Console.WriteLine("For at slette et spil, skal du indtaste dens ID. Du finder ID nummer for hvert spil under 'Spillager' i menuen.\n");
+        Console.Write("Spil ID: ");
+        int id = int.Parse(Console.ReadLine());
+        _storage.DeleteGame(id);
+        Console.WriteLine("\nSlettet spil med ID: " + id);
     }
     private void AddRequestMenu()
     {
+        Console.WriteLine("=== Registrer forespørgsel ===\n");
         Console.Write("Kundens navn: ");
         string customer = Console.ReadLine();
         Console.Write("Ønsket spil: ");
@@ -119,5 +141,15 @@ public class Menu
         string comment = Console.ReadLine();
         Request req = new Request(customer, game, comment);
         _requestStorage.AddRequest(req);
+    }
+
+    // Sanna DeleteRequestMenu test
+    private void DeleteRequestMenu()
+    {
+        Console.WriteLine("=== Slet forespørgsel ===");
+        Console.WriteLine("For at slette en forespørgsel, skal du indtaste dens ID. Du finder ID nummer for hver forespørgsel under 'Vis forespørgsler' i menuen.");
+        Console.WriteLine("- Tryk ENTER to gange uden at skrive noget for at komme tilbage til menuen.\n");
+        Console.Write("Forespørgsel ID: ");
+        int id = int.Parse(Console.ReadLine());
     }
 }
