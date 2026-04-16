@@ -79,7 +79,8 @@ namespace Gruppe6Genspil
             Console.WriteLine("=== Spillager ===\n");
             foreach (var game in Games)
             {
-                string gameNameCell = "Navn: " + game.Name.PadRight(longestGameName);
+                string name = game.Name.Split("GAME:")[1];                              // Removes 'GAME:'
+                string gameNameCell = "Navn: " + name.PadRight(longestGameName-5);      // Adjust longest name
                 string gameGenreCell = "Genre: " + game.Genre.PadRight(longestGameGenre);
                 string gameVariantCell = "Variant: " + game.Variant.PadRight(longestGameVariant);
                 string gameAgeRatingCell = "Aldersmærkning: " + game.AgeRating.ToString().PadRight(longestGameAgeRating);
