@@ -41,12 +41,15 @@ public class Menu
                     AddGameMenu();
                     break;
                 case "4":
-                    AddRequestMenu();
+                    DeleteGameMenu();
                     break;
                 case "5":
-                    _requestStorage.ShowRequests();
+                    AddRequestMenu();
                     break;
                 case "6":
+                    _requestStorage.ShowRequests();
+                    break;
+                case "7":
                     running = false;
                     break;
                 default:
