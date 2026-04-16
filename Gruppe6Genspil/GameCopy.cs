@@ -31,7 +31,7 @@ namespace Gruppe6Genspil
             return new GameCopy(parts[0], double.Parse(parts[1]), Enum.Parse<CopyStatus>(parts[2]))
             {
                 ReservedBy = parts[3]
-            }
+            };
         }
     }
 }
