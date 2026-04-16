@@ -27,8 +27,7 @@ public class Menu
             Console.WriteLine("4. Slet spil");
             Console.WriteLine("5. Registrer forespørgsel");
             Console.WriteLine("6. Vis forespørgsler");
-            Console.WriteLine("7. Slet forespørgsel");
-            Console.WriteLine("8. Afslut program");
+            Console.WriteLine("7. Afslut program");
             Console.Write("Vælg menu punkt: ");
             string choice = Console.ReadLine();
             Console.Clear();
@@ -53,9 +52,6 @@ public class Menu
                     _requestStorage.ShowRequests();
                     break;
                 case "7":
-                    DeleteRequestMenu();
-                    break;
-                case "8":
                     running = false;
                     break;
                 default:
@@ -141,15 +137,5 @@ public class Menu
         string comment = Console.ReadLine();
         Request req = new Request(customer, game, comment);
         _requestStorage.AddRequest(req);
-    }
-
-    // Sanna DeleteRequestMenu test
-    private void DeleteRequestMenu()
-    {
-        Console.WriteLine("=== Slet forespørgsel ===");
-        Console.WriteLine("For at slette en forespørgsel, skal du indtaste dens ID. Du finder ID nummer for hver forespørgsel under 'Vis forespørgsler' i menuen.");
-        Console.WriteLine("- Tryk ENTER to gange uden at skrive noget for at komme tilbage til menuen.\n");
-        Console.Write("Forespørgsel ID: ");
-        int id = int.Parse(Console.ReadLine());
     }
 }

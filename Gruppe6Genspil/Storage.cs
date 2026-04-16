@@ -110,14 +110,11 @@ namespace Gruppe6Genspil
             Games.Add(game);
             SaveGamesToFile(Games);
         }
-
-        // Sanna delete game test
         public void DeleteGame(int id)
         {
             Games.RemoveAll(x => x.Id == id);
             SaveGamesToFile(Games);
         }
-
         public List<Game> SearchGame(SearchCriteria criteria)
         {
             List<Game> results = new List<Game>();
