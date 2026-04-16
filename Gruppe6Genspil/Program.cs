@@ -4,9 +4,10 @@
     {
         static void Main(string[] args)
         {
-            Storage storage = new Storage("GameDatabase.txt");
+            IdManager idManager = new IdManager();
+            Storage storage = new Storage("GameDatabase.txt", idManager);
             RequestStorage requestStorage = new RequestStorage("RequestDatabase.txt");
-            Menu menu = new Menu(storage, requestStorage);
+            Menu menu = new Menu(storage, requestStorage, idManager);
             menu.Start();
         }
     }
