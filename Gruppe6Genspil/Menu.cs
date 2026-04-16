@@ -22,9 +22,10 @@ public class Menu
             Console.WriteLine("1. Vis lager");
             Console.WriteLine("2. Søg efter spil");
             Console.WriteLine("3. Tilføj spil");
-            Console.WriteLine("4. Registrer forespørgsel");
-            Console.WriteLine("5. Vis forespørgsler");
-            Console.WriteLine("6. Afslut program");
+            Console.WriteLine("4. Slet spil");
+            Console.WriteLine("5. Registrer forespørgsel");
+            Console.WriteLine("6. Vis forespørgsler");
+            Console.WriteLine("7. Afslut program");
             Console.Write("Vælg menu punkt: ");
             string choice = Console.ReadLine();
             Console.Clear();
