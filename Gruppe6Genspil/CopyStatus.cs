@@ -11,5 +11,4 @@ namespace Gruppe6Genspil
             Waitlist,
             ForRepair
         }
-    
 }

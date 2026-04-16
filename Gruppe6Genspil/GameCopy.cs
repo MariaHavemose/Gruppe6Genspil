@@ -10,7 +10,6 @@ namespace Gruppe6Genspil
         public double Price { get; set; }
         public CopyStatus Reserved { get; set; }
         public string ReservedBy { get; set; }
-
         public GameCopy(string condition, double price, CopyStatus status)
         {
             Condition = condition;
@@ -18,12 +17,10 @@ namespace Gruppe6Genspil
             Reserved = status;
             ReservedBy = null;
         }
-
         public override string ToString()
         {
             return $"COPY:{Condition},{Price},{Reserved},{ReservedBy}";
         }
-
         public static GameCopy FromString(string data)
         {
             string stripped = data.Substring(5);
