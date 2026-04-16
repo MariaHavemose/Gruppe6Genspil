@@ -66,6 +66,3 @@ namespace Gruppe6Genspil
         }
     }
 }
-
-
-
