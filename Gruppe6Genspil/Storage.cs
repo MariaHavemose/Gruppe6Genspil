@@ -95,14 +95,8 @@ namespace Gruppe6Genspil
                 string gameMaxPlayersCell = "Maksimum spillere: " + game.MaxPlayers.ToString().PadRight(longestGameMaxPlayers);
                 string gameMinPlayersCell = "Minimum spillere: " + game.MinPlayers.ToString().PadRight(longestGameMinPlayers);
                 string gameCopyAmount = "Antal kopier: " + game.Copies.Count;
-                Console.WriteLine(gameIdCell 
-                    + " | " + gameNameCell 
-                    + " | " + gameGenreCell 
-                    + " | " + gameVariantCell 
-                    + " | " + gameAgeRatingCell 
-                    + " | " + gameMaxPlayersCell 
-                    + " | " + gameMinPlayersCell 
-                    + " | " + gameCopyAmount);
+                Console.WriteLine(gameIdCell + " | " + gameNameCell + " | " + gameGenreCell + " | " + gameVariantCell + " | " + gameAgeRatingCell 
+                + " | " + gameMaxPlayersCell + " | " + gameMinPlayersCell + " | " + gameCopyAmount);
             }
         }
         public void AddGame(Game game)
