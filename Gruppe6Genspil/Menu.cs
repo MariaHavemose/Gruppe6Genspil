@@ -8,12 +8,14 @@ public class Menu
     private Storage _storage;
     private RequestStorage _requestStorage;
     private IdManager _idManager;
+
     public Menu(Storage storage, RequestStorage requestStorage, IdManager idManager)
     {
         _storage = storage;
         _requestStorage = requestStorage;
         _idManager = idManager;
     }
+
     public void Start()
     {
         bool running = true;
@@ -62,6 +64,7 @@ public class Menu
             Console.ReadKey();
         }
     }
+
     private void SearchGameMenu()
     {
         Console.WriteLine("=== Søg efter spil ===");
@@ -98,6 +101,7 @@ public class Menu
             }
         }
     }
+
     private void AddGameMenu()
     {
         int id = _idManager.GetNextId();
@@ -117,6 +121,7 @@ public class Menu
         Game game = new Game(id, name, genre, maxplayers, minplayers, ageRating, variant);
         _storage.AddGame(game);
     }
+
     private void DeleteGameMenu()
     {
         Console.WriteLine("=== Slet spil ===");
@@ -126,6 +131,7 @@ public class Menu
         _storage.DeleteGame(id);
         Console.WriteLine("\nSlettet spil med ID: " + id);
     }
+
     private void AddRequestMenu()
     {
         Console.WriteLine("=== Registrer forespørgsel ===\n");

@@ -13,7 +13,9 @@ namespace Gruppe6Genspil
         public int MinPlayers { get; set; }
         public int AgeRating { get; set; }
         public string Variant { get; set; }
+
         public List<GameCopy> Copies { get; set; } = new List<GameCopy>();
+
         public Game(int id, string name, string genre, int maxPlayers, int minPlayers, int ageRating, string variant)
         {
             Id = id;
@@ -24,10 +26,12 @@ namespace Gruppe6Genspil
             AgeRating = ageRating;
             Variant = variant;
         }
+
         public override string ToString()
         {
             return $"GAME:{Name},{Genre},{MaxPlayers},{MinPlayers},{AgeRating},{Variant}";
         }
+
         public static Game FromString(int id, string data)
         {
             string[] parts = data.Split(',');

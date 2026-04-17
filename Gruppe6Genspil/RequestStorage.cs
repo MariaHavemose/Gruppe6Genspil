@@ -18,6 +18,7 @@ namespace Gruppe6Genspil
                 }
             }
         }
+
         public List<Request> LoadRequestFromFile()
         {
             List<Request> requests = new List<Request>();
@@ -33,16 +34,19 @@ namespace Gruppe6Genspil
             }
             return requests;
         }
+
         public RequestStorage(string filePath)
         {
             FilePath = filePath;
             Requests = LoadRequestFromFile();
         }
+
         public void AddRequest(Request request)
         {
             Requests.Add(request);
             SaveRequestToFile(Requests);
         }
+
         public void ShowRequests()
         {
             int longestCustomerName = 13;
@@ -54,6 +58,7 @@ namespace Gruppe6Genspil
                 if (request.GameName.Length > longestGameName)
                     longestGameName = request.GameName.ToString().Length;
             }
+
             Console.WriteLine("Kundens navn:".PadRight(longestCustomerName) + " | " + "Kundens ønske:".PadRight(longestGameName) + " | " + "Kundens kommentar: ");
             Console.WriteLine("---------------------------------------------------");
             foreach (var request in Requests)

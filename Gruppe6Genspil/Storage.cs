@@ -12,12 +12,14 @@ namespace Gruppe6Genspil
         public string FilePath { get; set; }
         public List<Game> Games { get; set; } = new List<Game>();
         private IdManager _idManager;
+
         public Storage(string filePath, IdManager idManager)
         {
             FilePath = filePath;
             _idManager = idManager;
             Games = LoadGamesFromFile();
         }
+
         public void SaveGamesToFile(List<Game> games)
         {
             using (StreamWriter sw = new StreamWriter(FilePath))
@@ -32,6 +34,7 @@ namespace Gruppe6Genspil
                 }
             }
         }
+
         public List<Game> LoadGamesFromFile()
         {
             List<Game> games = new List<Game>();
@@ -58,6 +61,7 @@ namespace Gruppe6Genspil
             }
             return games; 
         }
+
         public void WriteAllGames()
         {
             int longestGameId = 0;
@@ -84,6 +88,7 @@ namespace Gruppe6Genspil
                 if (game.MinPlayers.ToString().Length > longestGameMinPlayers)
                     longestGameMinPlayers = game.MinPlayers.ToString().Length;
             }
+
             Console.WriteLine("=== Spillager ===\n");
             foreach (var game in Games)
             {
@@ -95,20 +100,29 @@ namespace Gruppe6Genspil
                 string gameMaxPlayersCell = "Maksimum spillere: " + game.MaxPlayers.ToString().PadRight(longestGameMaxPlayers);
                 string gameMinPlayersCell = "Minimum spillere: " + game.MinPlayers.ToString().PadRight(longestGameMinPlayers);
                 string gameCopyAmount = "Antal kopier: " + game.Copies.Count;
-                Console.WriteLine(gameIdCell + " | " + gameNameCell + " | " + gameGenreCell + " | " + gameVariantCell + " | " + gameAgeRatingCell 
-                + " | " + gameMaxPlayersCell + " | " + gameMinPlayersCell + " | " + gameCopyAmount);
+                Console.WriteLine(gameIdCell
+                    + " | " + gameNameCell
+                    + " | " + gameGenreCell
+                    + " | " + gameVariantCell
+                    + " | " + gameAgeRatingCell 
+                    + " | " + gameMaxPlayersCell
+                    + " | " + gameMinPlayersCell
+                    + " | " + gameCopyAmount);
             }
         }
+
         public void AddGame(Game game)
         {
             Games.Add(game);
             SaveGamesToFile(Games);
         }
+
         public void DeleteGame(int id)
         {
             Games.RemoveAll(x => x.Id == id);
             SaveGamesToFile(Games);
         }
+
         public List<Game> SearchGame(SearchCriteria criteria)
         {
             List<Game> results = new List<Game>();
